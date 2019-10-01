@@ -12,7 +12,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - name: set PATH
+      run: export PATH="$PATH:~/.local/bin" && mkdir -p ~/.local/bin
     - name: Install dependencies
       run: shards install
+    - name: Build
+      run: make build
     - name: Run tests
-      run: PATH="$PATH:~/.local/bin" make test
+      run: make test
